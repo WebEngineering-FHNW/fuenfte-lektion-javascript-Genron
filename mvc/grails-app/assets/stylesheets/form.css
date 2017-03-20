@@ -12,14 +12,21 @@ input {
 }
 
 @keyframes shake {
-    0% {transform: rotate(0deg)}
-   33% {transform: rotate(3deg)}
-   66% {transform: rotate(-3deg)}
+  0% {transform: rotate(0deg)}
+  33% {transform: rotate(3deg)}
+  66% {transform: rotate(-3deg)}
   100% {transform: rotate(0deg)}
 }
+@keyframes blink {
+  0% {
+    border-color: green;}
+  33% {border-color: red;}
+  66% {border-color: green;}
+  100% {border-color: red;}
+}
 .error { /* only change properties that do not change position or size. Keep the UI stable. */
-  border-color: orange;
-  /*animation: shake 0.2s 2;*/
+  border-color: red;
+  animation: blink 1s 2;
 }
 .padded { /* for vertical alignment of fieldset and result */
   padding: 1em;
