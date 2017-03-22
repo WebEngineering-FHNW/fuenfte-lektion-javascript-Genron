@@ -12,18 +12,34 @@ class JSTempConverterSpec extends GebSpec {
 
     void "From celsius to fahrenheit with JavaScript"() {
         when:
-            browser.driver.javascriptEnabled = true
-            go '/static/Temperatures.html'
+        browser.driver.javascriptEnabled = true
+        go '/static/Temperatures.html'
+
         then:
-        	title == "Temperature Converter with JavaScript"
+        title == "Temperature Converter with JavaScript"
 
         when: "set celsius without clicking"
-            $("form").celsius = "42"
+        $("form").celsius = "20"
+        $("form").fahrenheit().click()
 
         then: "the other field is updated immediately"
-            $("form").fahrenheit  == "32"
+        $("form").fahrenheit == "68"
     }
 
-    // TODO: make a new test method for fahrenheit to celsius conversion
+    void "From fahrenheit to celsius with JavaScript"() {
+        when:
+        browser.driver.javascriptEnabled = true
+        go '/static/Temperatures.html'
+
+        then:
+        title == "Temperature Converter with JavaScript"
+
+        when: "set fahrenheit without clicking"
+        $("form").fahrenheit = "68"
+        $("form").celsius().click()
+
+        then: "the other field is updated immediately"
+        $("form").celsius == "20"
+    }
 
 }
